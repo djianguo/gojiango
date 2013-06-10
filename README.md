@@ -3,9 +3,11 @@ gojiango
 
 Python Web app on GAE
 
-### Attention
->> It's still a demo.
->> You can view it at http://gojiango.appsp0t.com/.
+### Notice
+* It's still a demo.
+* You can view it at http://gojiango.appsp0t.com/.
 
 ### Dev
->> It is built with bottle, jinja2 and bootstrap.
+* bottle
+* jinja2 
+* bootstrap.
