@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <title>Jiango's Homepage</title>
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <style>
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+      .contain{
+      	width: 980px; 
+      	margin-top: 10px;
+      }
+      .article_title{
+      	width: 600px
+      }
+      .thead_bottom_border{
+      	border-bottom: 2px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+  	<div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="brand" href="#">Jiango's Home Page</a>
+	      <div class="nav-collapse collapse">
+	        <ul class="nav">
+	          <li class="active"><a href="/">Home</a></li>
+	          <li><a href="#about">Contact</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  	<div class="container contain">
+  		<div>
+	  		<ul class="thumbnails">
+	  			<li>
+	  				<a href="#" class="thumbnail">
+	  					<img data-src="holder.js/60x60">
+	  				</a>
+	  			</li>
+	  		</ul>
+	  	</div>
+	    <div>
+		    <ul class="nav nav-tabs" id="myTab">
+		    	<li class="active">
+					<a href="#postedit" data-toggle="tab">发表文章</a>
+				</li>
+				<li>
+					<a href="#postlist" data-toggle="tab">文章管理</a>
+				</li>
+				<li>
+					<a href="#category" data-toggle="tab">类别管理</a>
+				</li>
+				<li>
+					<a href="#feedback" data-toggle="tab">评论管理</a>
+				</li>
+				<li>
+					<a href="#configure" data-toggle="tab">博客配置</a>
+				</li>
+				<li>
+					<a href="#column" data-toggle="tab">博客栏目</a>
+				</li>
+				<li>
+					<a href="#draft" data-toggle="tab">草稿箱</a>
+				</li>
+				<li>
+					<a href="#deleted" data-toggle="tab">回收站</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="tab-content">
+			<div class="tab-pane active" id="postedit">
+				<form method="POST" action="{{act or '/postedit/add'}}">
+					<input class="input-xxlarge" type="text" placeholder="文章标题" name="articleTitle" value="{{title or ''}}">
+					<br/>
+					<textarea rows="20" placeholder="文章内容" class="span10" name="articleContent or ''">{{content}}</textarea>
+					<p>文章分类[<a href="#">编辑分类</a>]</p>
+					<div>
+						{% for type in allTypes %}
+						<label class="radio inline">
+						  <input type="radio" name="optionsRadios" id="{{type.key()}}"> {{type.typeName}}
+						</label>
+						{% endfor %}
+					</div>
+					<div>
+						<label class="checkbox inline">
+						  <input type="checkbox" id="inlineCheckbox3" value="option3"> 发布到SlideShow
+						</label>
+					</div>
+					<br/>
+					<div>
+						<input class="btn btn-primary" type="submit" value="发表文章">
+						<a class="btn btn-primary" href="#">立即保存</a>
+						<a class="btn btn-primary" href="/postlist">舍弃</a>
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane" id="postlist">1</div>
+			<div class="tab-pane" id="category">2</div>
+			<div class="tab-pane" id="feedback">3</div>
+			<div class="tab-pane" id="configure">4</div>
+			<div class="tab-pane" id="column">5</div>
+			<div class="tab-pane" id="draft">6</div>
+			<div class="tab-pane" id="deleted">7</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				$('#myTab a:first').tab('show');
+			})
+		</script>
+		
+  	</div>
+
+    <script type="text/javascript" src="/jquery/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/cndjs/holder.js"></script>
+  </body>
+</html>

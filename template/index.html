@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jiango's Homepage</title>
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <style>
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+      form {
+        margin-top: 10px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .container-fluid {
+        margin-top:10px;
+      }
+      .well-large {
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+  	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Jiango's Home Page</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="#about">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+  	
+    <div class="container-fluid">
+      <div class="row-fluid">  
+        
+        <div class="span9">
+          <div class="alert alert-block">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <h4>Warning!</h4>
+            {{warning}}
+          </div>
+
+          {% if article2Show %}
+
+          <h3>
+            {{article2Show.title}}
+          </h3>
+          <p>分类:<a href="#">xxx</a> {{article2Show.postime}} {{article2Show.readCount}}人阅读 <a href="#">评论</a>({{article2Show.commentCount}})</p>
+          <div>
+            {{article2Show.content}}
+          </div>
+
+          {% else %}          
+          
+          <div id="myCarousel" class="carousel slide">
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div class="active item">
+                <img src="/images/topofems.jpg" width="100%" height="100%"></img>
+                <div class="carousel-caption">
+                  <h4>峨眉山——金顶</h4>
+                  <p>好有型</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="/images/monkey.jpg" width="100%" height="100%"></img>
+                <div class="carousel-caption">
+                  <h4>偷我脉动的Monkey啊</h4>
+                  <p>玄奘该管管了</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="/images/mountaintop.jpg" width="100%" height="100%"></img>
+                <div class="carousel-caption">
+                  <h4>云淡风清</h4>
+                  <p>要升仙了</p>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+
+          </div>
+
+          {% for article in allArticles %}
+          <div class="well well-large">
+            <h3><a href="/article/details/{{article.key()}}">{{article.title}}</a></h3>
+            <p>{{article.content}}</p>
+            <p>{{article.postime}} <a href="#">阅读</a>({{article.readCount}}) <a href="#">评论</a>({{article.commentCount}})</p>
+          </div>
+          {% endfor %}
+          
+          <!-- Carousel nav -->          
+          <div class="pagination pagination-large">
+              <ul>
+                <li><a href="#">Prev</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">Next</a></li>
+              </ul>
+          </div>        
+        
+        {% endif %}
+          <form action="/lnote" method="post">
+            <div><textarea name="content" class="input-block-level" rows="7"></textarea></div>
+            <div><input type="submit" class="btn btn-large btn-primary" value="Leave a note"></div>
+          </form>
+        </div>
+
+        <div class="span3">          
+          <ul class="thumbnails">
+            <li class="span12">
+              <div class="thumbnail">
+                <img data-src="holder.js/300x200" alt="">
+                <h4>About</h4>
+                <p>因为GAE在国内的访问速度以及appsp0t.com说不定什么时候就会被墙，此app仅当练习。</p>
+                <p>在完成这个Python博客应用后，会将源代码托管到github/bitbucket/google code/OSC；看到网上有很多这样的Python博客应用开源出来，本人Python初学者，向高手学习。</p>
+                <p>CSDN ID：KEYTOME，老实说里面写的东西质量并不高，写作目的只是希望这样可以促使自己去学习一些新东西并提高编程能力，当然，以后的博客内容质量会不断提高，欢迎交流。 </p>
+                <p>本人主要方向是C/C++，业余喜欢写点程序来提高编程能力，方向不定，跟着感觉走，最近学习用Qt图形库加上IPMsg协议写一个类似飞秋的东西，不是什么新奇的东西，只是觉得写这么个程序一来可以学到不少东西，二来觉得局域网IM可以写得更好看更有意思一些。</p>
+              </div>
+            </li>            
+          </ul>
+
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Life</li>           
+              {% for t in allTypes %}   
+              <li><a href="#">{{t.typeName}}</a></li>
+              {% endfor %}
+              <li class="nav-header">My App</li>
+              <li><a href="#">Touch2013Qt</a></li>
+              <li><a href="#">My PHP on SAE</a></li>
+              <li><a href="#">My 1st iPad app</a></li>
+              <li><a href="#">My 1st Android phone app</a></li>
+
+              <li class="nav-header">Book</li>
+              <li><a href="#">#</a></li>
+              <li><a href="#">#</a></li>
+
+              <li class="nav-header">Movie</li>
+              <li><a href="#">#</a></li>
+              <li><a href="#">#</a></li>
+            </ul>
+          </div>
+
+          
+        </div>
+
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="/jquery/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/cndjs/holder.js"></script>
+  </body>
+</html>
+{% endautoescape %}

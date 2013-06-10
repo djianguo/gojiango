@@ -1,0 +1,35 @@
+# Python Application Configuration:
+# https://developers.google.com/appengine/docs/python/config/appconfig
+# Required Elements
+application: gojiango
+version: 2-add-db
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# Script Handlers
+handlers:
+- url: /images
+  static_dir: static/images
+- url: /bootstrap
+  static_dir: static/bootstrap
+- url: /cndjs 
+  static_dir: static/cndjs
+- url: /jquery
+  static_dir: static/jquery
+- url: /favicon\.ico
+  static_files: static/favicon.ico
+  upload: static/favicon\.ico
+
+- url: /.*
+  script: gojiango.app
+
+
+# Third-party Libraries in Python 2.7:
+# https://developers.google.com/appengine/docs/python/tools/libraries27
+libraries:
+- name: jinja2
+  version: latest
+
+error_handlers:
+- file: 404.html
