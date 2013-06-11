@@ -133,3 +133,8 @@ def error404(error):
 def login():
 	t = jinja_env.get_template('/template/login.html')
 	return t.render() 
+
+@app.route('/about')
+def about():
+	t = jinja_env.get_template('/template/about.html')
+	return t.render() 
