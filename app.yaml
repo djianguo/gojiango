@@ -2,7 +2,7 @@
 # https://developers.google.com/appengine/docs/python/config/appconfig
 # Required Elements
 application: gojiango
-version: 2-add-db
+version: demo-v1
 runtime: python27
 api_version: 1
 threadsafe: true
